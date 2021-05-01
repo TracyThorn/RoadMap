@@ -10,11 +10,9 @@ const NoteSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: [true, "Please add a note."]
-  },
-  created: {
-    type: Date,
-    default: Date.now
-  }
+  }}, {
+    timestamps: true,
+  
 });
 
 const Note = mongoose.model("Note", NoteSchema);
