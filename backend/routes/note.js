@@ -23,4 +23,29 @@ router.route("/add").post((req, res) => {
     .catch(err => res.status(400).json("Error: " + err + "."));
 });
 
+router.route("/:id").get((req, res) => {
+  Note.findById(req.params.id)
+    .then(note => res.json(note))
+    .catch(err => res.status(400).json("Error: " + err + "."));
+});
+
+router.route("/:id").delete((req, res) => {
+  Note.findByIdAndDelete(req.params.id)
+    .then(() => res.json("Exercise Deleted!"))
+    .catch(err => res.status(400).json("Error: " + err + "."));
+});
+
+router.route("/update/:id").post((req, res) => {
+  Note.findById(req.params.id)
+    .then(note => {
+      note.title = req.body.title;
+      note.text = req.body.text;
+
+      note.save()
+        .then(() => res.json("Exercise Updated!"))
+        .catch(err => res.status(400).json("Error: " + err + "."));
+    })
+    .catch(err => res.status(400).json("Error: " + err + "."));
+});
+
 module.exports = router;
