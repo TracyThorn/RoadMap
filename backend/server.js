@@ -21,6 +21,10 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully!")
 });
 
+app.get("/", (req, res) => {
+  res.send("<h1>Test</h1>");
+})
+
 const noteRouter = require("./notes/routes/note");
 
 app.use("/note", noteRouter);
