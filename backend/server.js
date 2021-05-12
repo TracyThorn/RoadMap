@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const path = require("path");
 
 require("dotenv").config();
 
@@ -21,8 +22,10 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully!")
 });
 
+app.use("/", express.static(path.resolve(__dirname, "../client/dist")))
+
 app.get("/", (req, res) => {
-  res.send("<h1>Test</h1>");
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"))
 })
 
 const noteRouter = require("./notes/routes/note");
