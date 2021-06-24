@@ -1,8 +1,9 @@
-import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counter";
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import RootReducer from './index.js';
 
-export default configureStore({
-    reducer: {
-        counter: counterReducer
-    }
-});
+export const middlewares = [ReduxThunk];
+
+export const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore)
+
+export const store = createStoreWithMiddleware(RootReducer)

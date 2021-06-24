@@ -1,9 +1,7 @@
 import React from "react";
 import { shallow, configure, render } from "enzyme";
 import Counter from "./Counter";
-import Adapter from "enzyme-adapter-react-16";
 
-configure({ adapter: new Adapter() });
 
 function sum(a, b) {
   return a + b;
